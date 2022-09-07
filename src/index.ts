@@ -1,5 +1,10 @@
-import dotenv from 'dotenv-safe';
+import { RestServer } from './server';
 
-dotenv.config();
+const main = async () => {
+  const server = new RestServer();
+  server.start(3000);
+};
 
-console.log('a')
+main().catch(err => {
+  console.log(err);
+});
