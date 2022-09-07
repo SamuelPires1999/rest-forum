@@ -2,12 +2,12 @@ import 'reflect-metadata';
 import Logger from 'jet-logger';
 import Express from 'express';
 import { useExpressServer } from 'routing-controllers';
-import { UserController } from './features/user/userController';
+import { PostController } from './features/post/postController';
 
 const main = async () => {
   const app = Express();
   useExpressServer(app, {
-    controllers: [UserController],
+    controllers: [PostController],
     routePrefix: '/api',
   });
   app.listen(3000, () => {

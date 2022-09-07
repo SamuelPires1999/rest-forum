@@ -16,7 +16,7 @@ model Post {
   updatedAt DateTime @updatedAt
   title     String
   content   String
-  Reply     Reply[]
+  reply     Reply[]
 }
 
 model Reply {
