@@ -25,6 +25,26 @@ export class PostController {
     };
   }
 
+  @Get('/all/clean')
+  async getPostsWithoutReplies() {
+    Logger.info('==== Get all posts without the reply ====');
+    const posts = await db.post.findMany();
+    return {
+      message: 'success',
+      posts,
+    };
+  }
+
+  @Get('/:id')
+  async getSinglePostById(@Param('id') id: number) {
+    Logger.info('==== Get single post by ID ====');
+    const post = await db.post.findUnique({ where: { id }, include: { reply: true } });
+    return {
+      message: 'success',
+      post,
+    };
+  }
+
   @Post('/reply/:id')
   async replyToPost(@Body() { data }: Prisma.ReplyCreateArgs, @Param('id') id: number) {
     Logger.info(`==== Replying to post ${id} ====`);
